@@ -1,27 +1,43 @@
 package entity;
 
-public class Flight {
+class Flight {
+    private String flightNumber;
+    private String destination;
+    private int availableSeats;
 
-	private int flightId;
-	private String destination;
-	private double departureTime;
-	private int availableSeats;
-	private double ticketPrice;
+    public Flight(String flightNumber, String destination, int availableSeats) {
+        this.flightNumber = flightNumber;
+        this.destination = destination;
+        this.availableSeats = availableSeats;
+    }
 
-	// parameterized Constructor
-	public Flight(int flightId, String destination, double departureTime, int availableSeats, double ticketPrice) {
-		super();
-		this.flightId = flightId;
-		this.destination = destination;
-		this.departureTime = departureTime;
-		this.availableSeats = availableSeats;
-		this.ticketPrice = ticketPrice;
-	}
+    public String getFlightNumber() {
+        return flightNumber;
+    }
 
-	public int getFlightId() {
-		return flightId;
-	}
+    public String getDestination() {
+        return destination;
+    }
 
+    public int getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void bookSeat() throws Exception {
+        if (availableSeats <= 0) {
+            throw new Exception("No seats available for flight " + flightNumber);
+        }
+        availableSeats--;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "flightNumber='" + flightNumber + '\'' +
+                ", destination='" + destination + '\'' +
+                ", availableSeats=" + availableSeats +
+                '}';
+    }
 	public void setFlightId(int flightId) {
 		this.flightId = flightId;
 	}
